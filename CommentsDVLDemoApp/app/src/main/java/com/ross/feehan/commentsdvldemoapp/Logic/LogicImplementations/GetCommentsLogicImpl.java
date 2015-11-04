@@ -52,8 +52,9 @@ public class GetCommentsLogicImpl implements GetCommentsLogicInterface{
         //if there are comments pass them back to the view
         else{
             displayCommentsView.displayComments(comments);
-            displayCommentsView.hideLoadingProgress();
         }
+
+        displayCommentsView.hideLoadingProgress();
     }
 
     /*Method to notify in case of fetching the comments went wrong

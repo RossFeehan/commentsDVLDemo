@@ -2,6 +2,8 @@ package com.ross.feehan.commentsdvldemoapp.Utils;
 
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
+import com.ross.feehan.commentsdvldemoapp.View.ViewImplementations.DisplayCommentsActivity;
 
 import javax.inject.Singleton;
 
@@ -13,7 +15,7 @@ import dagger.Provides;
  * Copyright Ross Feehan
  */
 
-@Module(injects =  {CommentsDVLDemoAppApplication.class},
+@Module(injects =  {CommentsDVLDemoAppApplication.class, DisplayCommentsActivity.class},
         complete = false,
         library = true)
 public class LogicDIModules {
@@ -21,7 +23,7 @@ public class LogicDIModules {
     private GetCommentsLogicImpl getCommentsLogic;
 
     @Provides @Singleton
-    public GetCommentsLogicImpl provideGetCommentsLogic(GetCommentsImpl getComments){
+    public GetCommentsLogicInterface provideGetCommentsLogic(GetCommentsImpl getComments){
         if(getCommentsLogic == null){
             getCommentsLogic = new GetCommentsLogicImpl(getComments);
         }
