@@ -28,7 +28,7 @@ public class CommentsDVLDemoAppApplication extends Application {
     }
 
     private List<Object> getModules(){
-        return Arrays.<Object>asList(new DataDIModules(ctx));
+        return Arrays.<Object>asList(new DataDIModules(ctx), new LogicDIModules());
     }
 
     public ObjectGraph getObjectGraph(){

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.SharedPreferences.CommentsSharedPreferences;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 
 import javax.inject.Singleton;
 
@@ -15,7 +16,7 @@ import dagger.Provides;
  * Copyright Ross Feehan
  */
 
-@Module(injects =  {GetCommentsImpl.class},
+@Module(injects =  {CommentsDVLDemoAppApplication.class, GetCommentsImpl.class, GetCommentsLogicImpl.class},
         complete = false,
         library = true)
 public class DataDIModules {
