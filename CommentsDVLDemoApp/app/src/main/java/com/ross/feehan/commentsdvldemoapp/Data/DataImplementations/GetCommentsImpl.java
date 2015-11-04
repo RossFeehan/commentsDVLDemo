@@ -14,7 +14,6 @@ import java.util.List;
 public class GetCommentsImpl implements GetCommentsInterface{
 
     private CommentsSharedPreferences commentsSP;
-    private GetCommentsLogicInterface getCommentsListener;
 
     //constructor
     public GetCommentsImpl(CommentsSharedPreferences commentsSP){
@@ -26,16 +25,8 @@ public class GetCommentsImpl implements GetCommentsInterface{
      *Returns the list of comments to the GetCommentsLogicInterface Listener through implemented interface method
      */
     @Override
-    public void getComments() {
+    public void getComments(GetCommentsLogicInterface getCommentsListener) {
         List<Comment> comments = commentsSP.getComments();
         getCommentsListener.receiveComments(comments);
-    }
-
-    /*Mehtod that registers the GetCommentsLogicInterface Listener
-     *So the list of comments can be returned through an implemented interface method later on
-     */
-    @Override
-    public void registerGetCommentsListener(GetCommentsLogicInterface getCommentsListener) {
-        this.getCommentsListener = getCommentsListener;
     }
 }

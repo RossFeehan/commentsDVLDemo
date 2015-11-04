@@ -8,7 +8,5 @@ import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogic
  */
 public interface GetCommentsInterface {
 
-    public void getComments();
-
-    public void registerGetCommentsListener(GetCommentsLogicInterface getCommentsListener);
+    public void getComments(GetCommentsLogicInterface getCommentsListener);
 }
