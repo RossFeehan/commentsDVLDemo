@@ -1,11 +1,13 @@
-package com.ross.feehan.commentsdvldemoapp;
+package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class GetCommentsActivity extends Activity {
+import com.ross.feehan.commentsdvldemoapp.R;
+
+public class DisplayCommentsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
