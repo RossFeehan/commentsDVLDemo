@@ -5,4 +5,6 @@ package com.ross.feehan.commentsdvldemoapp.Data.DataInterfaces;
  * Copyright Ross Feehan
  */
 public interface GetCommentsInterface {
+
+    public void getComments();
 }
