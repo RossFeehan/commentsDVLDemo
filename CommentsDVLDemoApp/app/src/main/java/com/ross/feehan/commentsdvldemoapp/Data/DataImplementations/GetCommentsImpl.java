@@ -40,5 +40,4 @@ public class GetCommentsImpl implements GetCommentsInterface {
             }
         }, 2000);
     }
-
 }

@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="failedToGetComments">Sorry, something went wrong and the comments
+        could not be fetched</string>
 </resources>

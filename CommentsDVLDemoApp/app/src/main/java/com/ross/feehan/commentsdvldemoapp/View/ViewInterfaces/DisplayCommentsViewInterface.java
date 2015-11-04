@@ -14,11 +14,11 @@ public interface DisplayCommentsViewInterface {
 
     public void hideLoadingProgress();
 
-    public void receiveComments(List<Comment> comments);
+    public void displayComments(List<Comment> comments);
 
     public void noCommentsYet();
 
-    public void getCommentsFailed(String message);
+    public void getCommentsFailed();
 
 
 }
