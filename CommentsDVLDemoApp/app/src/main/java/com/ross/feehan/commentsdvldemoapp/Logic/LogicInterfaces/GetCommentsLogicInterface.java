@@ -1,6 +1,6 @@
 package com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces;
 
-import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comments;
+import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 
 import java.util.List;
 
@@ -12,9 +12,7 @@ public interface GetCommentsLogicInterface {
 
     public void getComments();
 
-    public void receiveComments(List<Comments> comments);
-
-    public void noCommentsYet();
+    public void receiveComments(List<Comment> comments);
 
     public void getCommentsFailed();
 }

@@ -1,6 +1,6 @@
 package com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces;
 
-import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comments;
+import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface DisplayCommentsViewInterface {
 
     public void hideLoadingProgress();
 
-    public void receiveComments(List<Comments> comments);
+    public void receiveComments(List<Comment> comments);
 
     public void noCommentsYet();
 

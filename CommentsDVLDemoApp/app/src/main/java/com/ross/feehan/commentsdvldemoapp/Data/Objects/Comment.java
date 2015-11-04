@@ -4,11 +4,11 @@ package com.ross.feehan.commentsdvldemoapp.Data.Objects;
  * Created by Ross Feehan on 04/11/2015.
  * Copyright Ross Feehan
  */
-public class Comments {
+public class Comment {
 
     String comment, commentDate;
 
-    public Comments(String comment, String commentDate){
+    public Comment(String comment, String commentDate){
         setComment(comment);
         setCommentDate(commentDate);
     }
