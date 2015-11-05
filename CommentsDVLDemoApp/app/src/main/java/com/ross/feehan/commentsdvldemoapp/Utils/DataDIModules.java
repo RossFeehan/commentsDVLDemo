@@ -6,6 +6,7 @@ import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsIm
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.PostCommentImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.SharedPreferences.CommentsSharedPreferences;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.PostCommentLogicImpl;
 
 import javax.inject.Singleton;
 
@@ -17,7 +18,8 @@ import dagger.Provides;
  * Copyright Ross Feehan
  */
 
-@Module(injects =  {CommentsDVLDemoAppApplication.class, GetCommentsImpl.class, GetCommentsLogicImpl.class},
+@Module(injects =  {CommentsDVLDemoAppApplication.class, GetCommentsImpl.class, GetCommentsLogicImpl.class,
+        PostCommentLogicImpl.class, PostCommentImpl.class},
         complete = false,
         library = true)
 public class DataDIModules {

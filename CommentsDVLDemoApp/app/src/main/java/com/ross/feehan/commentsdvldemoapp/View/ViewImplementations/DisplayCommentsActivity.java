@@ -1,7 +1,9 @@
 package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -17,6 +19,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class DisplayCommentsActivity extends Activity implements DisplayCommentsViewInterface {
 
     //DI INJECT
@@ -28,13 +34,21 @@ public class DisplayCommentsActivity extends Activity implements DisplayComments
         setContentView(R.layout.get_comments_view);
 
         //FOR DEPENDENCY INJECTION
-        //For Dependency Injection
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
+        //FOR BUTTERKNIFE
+        ButterKnife.bind(this);
 
         getCommentsLogic.getComments(this);
     }
 
-    //DisplayCommentsViewInterface METHODS
+    //CLASS METHODS
+    @OnClick(R.id.postCommentFAB)
+    protected void onPostCommentFABClicked(){
+        Intent postCommentIntent = new Intent(this, PostCommentActivity.class);
+        startActivity(postCommentIntent);
+    }
+
+    //DisplayCommentsViewInterface INTERFACE METHODS
     @Override
     public void displayLoadingProgress() {
         Toast.makeText(this, "Display Progress", Toast.LENGTH_LONG).show();

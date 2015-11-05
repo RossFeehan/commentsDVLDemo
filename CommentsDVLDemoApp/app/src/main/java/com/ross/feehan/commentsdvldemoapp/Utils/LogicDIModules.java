@@ -5,7 +5,9 @@ import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.PostCommentIm
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.PostCommentLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.PostCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.View.ViewImplementations.DisplayCommentsActivity;
+import com.ross.feehan.commentsdvldemoapp.View.ViewImplementations.PostCommentActivity;
 
 import javax.inject.Singleton;
 
@@ -17,7 +19,8 @@ import dagger.Provides;
  * Copyright Ross Feehan
  */
 
-@Module(injects =  {CommentsDVLDemoAppApplication.class, DisplayCommentsActivity.class},
+@Module(injects =  {CommentsDVLDemoAppApplication.class, DisplayCommentsActivity.class,
+        PostCommentActivity.class},
         complete = false,
         library = true)
 public class LogicDIModules {
@@ -34,7 +37,7 @@ public class LogicDIModules {
     }
 
     @Provides @Singleton
-    public PostCommentLogicImpl providePostCommentLogicImpl(PostCommentImpl postComment){
+    public PostCommentsLogicInterface providePostCommentLogicImpl(PostCommentImpl postComment){
         if(postCommentLogic == null){
             postCommentLogic = new PostCommentLogicImpl(postComment);
         }

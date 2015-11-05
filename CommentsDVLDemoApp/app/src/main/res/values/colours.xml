@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="mainColor">#3067FB</color>
+    <color name="mainColorDark">#3262AB</color>
+    <color name="mainGrey">#e0e0e0</color>
+    <color name="actionButtonYellow">#fdd835</color>
+    <color name="actionButtonRipple">#bdbdbd</color>
+</resources>
