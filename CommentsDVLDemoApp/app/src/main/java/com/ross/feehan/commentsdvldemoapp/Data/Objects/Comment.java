@@ -13,6 +13,10 @@ public class Comment {
         setCommentDate(commentDate);
     }
 
+    public Comment(String comment){
+        setComment(comment);
+    }
+
     //Setters
     public void setComment(String comment) {
         this.comment = comment;

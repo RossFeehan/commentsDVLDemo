@@ -16,5 +16,5 @@ public interface PostCommentViewInterface {
 
     public void commentStructuredIncorrectlyBlank();
 
-    public void commentStructuredIncorrectlyWordCount();
+    public void commentStructuredIncorrectlyCharacterCount();
 }

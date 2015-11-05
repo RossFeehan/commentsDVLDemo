@@ -1,6 +1,7 @@
 package com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
+import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.PostCommentViewInterface;
 
 /**
  * Created by Ross Feehan on 05/11/2015.
@@ -8,7 +9,7 @@ import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
  */
 public interface PostCommentsLogicInterface {
 
-    public void checkComment(Comment comment);
+    public void checkComment(Comment comment, PostCommentViewInterface postCommentViewListener);
 
     public void commentPosted(boolean commentPostedSuccessfully);
 }
