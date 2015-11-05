@@ -10,7 +10,5 @@ public interface PostCommentsLogicInterface {
 
     public void checkComment(Comment comment);
 
-    public void commentPostedSuccessfully();
-
-    public void commentUnsuccessfullyPosted();
+    public void commentPosted(boolean commentPostedSuccessfully);
 }

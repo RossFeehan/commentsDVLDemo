@@ -3,6 +3,7 @@ package com.ross.feehan.commentsdvldemoapp.Utils;
 import android.content.Context;
 
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsImpl;
+import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.PostCommentImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.SharedPreferences.CommentsSharedPreferences;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 
@@ -24,6 +25,7 @@ public class DataDIModules {
     private Context ctx;
     private GetCommentsImpl getCommentsImpl;
     private CommentsSharedPreferences commentsSP;
+    private PostCommentImpl postComment;
 
     //constructor
     public DataDIModules(Context ctx){
@@ -44,5 +46,13 @@ public class DataDIModules {
             getCommentsImpl = new GetCommentsImpl(commentsSP);
         }
         return getCommentsImpl;
+    }
+
+    @Provides @Singleton
+    public PostCommentImpl providePostCommentImpl(CommentsSharedPreferences commentsSP){
+        if(postComment == null){
+            postComment = new PostCommentImpl(commentsSP);
+        }
+        return postComment;
     }
 }
