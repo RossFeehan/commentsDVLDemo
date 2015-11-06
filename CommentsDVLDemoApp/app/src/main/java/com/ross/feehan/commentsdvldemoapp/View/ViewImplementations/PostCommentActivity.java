@@ -47,6 +47,7 @@ public class PostCommentActivity extends AppCompatActivity implements PostCommen
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.postComment));
 
         postCommentFAB.setVisibility(View.VISIBLE);
     }

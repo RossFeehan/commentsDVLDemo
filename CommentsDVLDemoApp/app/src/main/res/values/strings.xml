@@ -6,4 +6,6 @@
     <string name="failedToGetComments">Sorry, something went wrong and the comments
         could not be fetched</string>
     <string name="commentHint">Enter your comment here</string>
+    <string name="allComments">All Comments</string>
+    <string name="postComment">Post Comment</string>
 </resources>

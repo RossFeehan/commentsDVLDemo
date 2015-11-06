@@ -38,6 +38,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.allComments));
 
         //getCommentsLogic.getComments(this);
     }
