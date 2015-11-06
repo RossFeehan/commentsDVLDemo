@@ -1,9 +1,10 @@
 package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,10 +27,11 @@ import butterknife.OnClick;
  * Created by Ross Feehan on 05/11/2015.
  * Copyright Ross Feehan
  */
-public class PostCommentActivity extends Activity implements PostCommentViewInterface {
+public class PostCommentActivity extends AppCompatActivity implements PostCommentViewInterface {
 
     @Bind(R.id.commentET) protected EditText commentET;
     @Bind(R.id.progressBar) protected RelativeLayout progressBarLayout;
+    @Bind(R.id.toolbar) protected Toolbar toolbar;
     @Bind(R.id.postCommentFAB) FloatingActionButton postCommentFAB;
     @Inject PostCommentsLogicInterface postComment;
     @Inject Comment comment;
@@ -43,6 +45,8 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
         //FOR BUTTERKNIFE
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         postCommentFAB.setVisibility(View.VISIBLE);
     }
