@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/mainGrey">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:background="@color/mainColor">
 
 
@@ -22,5 +23,17 @@
             android:textColorHint="@color/mainGrey"
             android:hint="@string/commentHint"/>
     </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/postCommentFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="175dp"
+        android:layout_marginRight="18dp"
+        android:clickable="true"
+        app:elevation="4dp"
+        android:src="@mipmap/ic_done_white_24dp"
+        app:backgroundTint="@color/actionButtonYellow"/>
 
 </RelativeLayout>

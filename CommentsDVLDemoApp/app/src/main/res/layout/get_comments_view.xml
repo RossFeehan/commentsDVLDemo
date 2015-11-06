@@ -16,5 +16,5 @@
         android:clickable="true"
         app:elevation="4dp"
         android:src="@mipmap/ic_add_white_24dp"
-        app:backgroundTint="@color/mainColor"/>
+        app:backgroundTint="@color/actionButtonYellow"/>
 </RelativeLayout>

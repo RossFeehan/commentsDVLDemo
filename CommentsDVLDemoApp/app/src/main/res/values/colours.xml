@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="mainColor">#3067FB</color>
-    <color name="mainColorDark">#3262AB</color>
+    <color name="mainColor">#006495</color>
+    <color name="mainColorDark">#004C70</color>
     <color name="mainGrey">#e0e0e0</color>
-    <color name="actionButtonYellow">#fdd835</color>
+    <color name="actionButtonYellow">#F4D00C</color>
     <color name="actionButtonRipple">#bdbdbd</color>
 </resources>

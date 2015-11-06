@@ -38,7 +38,7 @@ public class DisplayCommentsActivity extends Activity implements DisplayComments
         //FOR BUTTERKNIFE
         ButterKnife.bind(this);
 
-        getCommentsLogic.getComments(this);
+        //getCommentsLogic.getComments(this);
     }
 
     //CLASS METHODS

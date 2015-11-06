@@ -26,8 +26,6 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
 
         //FOR DEPENDENCY INJECTION
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
-
-
     }
 
     //PostCommentViewInterface METHODS
