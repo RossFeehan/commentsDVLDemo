@@ -1,8 +1,13 @@
 package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
@@ -24,6 +29,8 @@ import butterknife.OnClick;
 public class PostCommentActivity extends Activity implements PostCommentViewInterface {
 
     @Bind(R.id.commentET) protected EditText commentET;
+    @Bind(R.id.progressBar) protected RelativeLayout progressBarLayout;
+    @Bind(R.id.postCommentFAB) FloatingActionButton postCommentFAB;
     @Inject PostCommentsLogicInterface postComment;
     @Inject Comment comment;
 
@@ -36,11 +43,16 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
         //For Butterknife
         ButterKnife.bind(this);
+
+        postCommentFAB.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.postCommentFAB)
     protected void onPostCommentFABClicked(){
         comment.setComment(commentET.getText().toString());
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(commentET.getWindowToken(), 0);
 
         postComment.checkComment(comment, this);
     }
@@ -48,31 +60,34 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
     //PostCommentViewInterface METHODS
     @Override
     public void displayLoadingProgress() {
-        Toast.makeText(this, "Display Progress", Toast.LENGTH_LONG).show();
+        progressBarLayout.setVisibility(View.VISIBLE);
+        postCommentFAB.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideDisplayProgress() {
-        Toast.makeText(this, "Hide Progress", Toast.LENGTH_LONG).show();
+        progressBarLayout.setVisibility(View.INVISIBLE);
+        postCommentFAB.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void commentPostedSuccessfully() {
         Toast.makeText(this, "Comment Posted Successfully", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
     public void commentUnsuccessfullyPosted() {
-        Toast.makeText(this, "Comment Unsuccessfully Posted", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Comment Unsuccessfully Posted, please try again", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void commentStructuredIncorrectlyBlank() {
-        Toast.makeText(this, "Comment Blank", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Comment Blank, please try again", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void commentStructuredIncorrectlyCharacterCount() {
-        Toast.makeText(this, "Comment Over Word Count", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Comment Over Word Count, please try again", Toast.LENGTH_LONG).show();
     }
 }

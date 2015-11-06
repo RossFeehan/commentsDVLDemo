@@ -1,9 +1,13 @@
 package com.ross.feehan.commentsdvldemoapp.Data.DataImplementations;
 
+import android.os.Handler;
+
 import com.ross.feehan.commentsdvldemoapp.Data.DataInterfaces.PostCommentInterface;
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.Data.SharedPreferences.CommentsSharedPreferences;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.PostCommentsLogicInterface;
+
+import java.util.List;
 
 /**
  * Created by Ross Feehan on 05/11/2015.
@@ -25,7 +29,16 @@ public class PostCommentImpl implements PostCommentInterface {
     @Override
     public void postComment(Comment comment, PostCommentsLogicInterface postCommentListener) {
 
-        boolean posted = commentSP.saveComment(comment);
-        postCommentListener.commentPosted(posted);
+        final Comment commentToSave = comment;
+        final PostCommentsLogicInterface postListener = postCommentListener;
+        //Just a timed handler to make the process look longer than it is on the UI
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                boolean posted = commentSP.saveComment(commentToSave);
+                postListener.commentPosted(posted);
+            }
+        }, 2000);
+
     }
 }
