@@ -1,15 +1,13 @@
 package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
-import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.R;
 import com.ross.feehan.commentsdvldemoapp.Utils.CommentsDVLDemoAppApplication;
@@ -23,8 +21,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DisplayCommentsActivity extends Activity implements DisplayCommentsViewInterface {
+public class DisplayCommentsActivity extends AppCompatActivity implements DisplayCommentsViewInterface {
 
+    @Bind(R.id.toolbar) Toolbar toolbar;
     //DI INJECT
     @Inject  GetCommentsLogicInterface getCommentsLogic;
 
@@ -37,6 +36,8 @@ public class DisplayCommentsActivity extends Activity implements DisplayComments
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
         //FOR BUTTERKNIFE
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
 
         //getCommentsLogic.getComments(this);
     }

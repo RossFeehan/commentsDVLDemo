@@ -41,7 +41,7 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
 
         //FOR DEPENDENCY INJECTION
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
-        //For Butterknife
+        //FOR BUTTERKNIFE
         ButterKnife.bind(this);
 
         postCommentFAB.setVisibility(View.VISIBLE);
