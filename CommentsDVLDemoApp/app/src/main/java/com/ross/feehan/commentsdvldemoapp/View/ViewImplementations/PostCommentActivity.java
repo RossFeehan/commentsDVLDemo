@@ -2,8 +2,10 @@ package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.PostCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.R;
 import com.ross.feehan.commentsdvldemoapp.Utils.CommentsDVLDemoAppApplication;
@@ -11,13 +13,19 @@ import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.PostCommentViewInt
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by Ross Feehan on 05/11/2015.
  * Copyright Ross Feehan
  */
 public class PostCommentActivity extends Activity implements PostCommentViewInterface {
 
+    @Bind(R.id.commentET) protected EditText commentET;
     @Inject PostCommentsLogicInterface postComment;
+    @Inject Comment comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,15 @@ public class PostCommentActivity extends Activity implements PostCommentViewInte
 
         //FOR DEPENDENCY INJECTION
         ((CommentsDVLDemoAppApplication)getApplication()).getObjectGraph().inject(this);
+        //For Butterknife
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.postCommentFAB)
+    protected void onPostCommentFABClicked(){
+        comment.setComment(commentET.getText().toString());
+
+        postComment.checkComment(comment, this);
     }
 
     //PostCommentViewInterface METHODS

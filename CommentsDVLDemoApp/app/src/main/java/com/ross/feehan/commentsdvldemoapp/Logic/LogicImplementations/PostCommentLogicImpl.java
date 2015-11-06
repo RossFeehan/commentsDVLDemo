@@ -32,7 +32,7 @@ public class PostCommentLogicImpl implements PostCommentsLogicInterface {
         this.postCommentViewListener = postCommentViewListener;
 
         //if the comment is null or blank notify the post comment view listener
-        if(comment.getComment() == null || comment.getComment().equals(" ")){
+        if(comment.getComment() == null || comment.getComment().isEmpty()){
             this.postCommentViewListener.commentStructuredIncorrectlyBlank();
         }
         else if(comment.getComment().length() > CHARACTERCOUNT){

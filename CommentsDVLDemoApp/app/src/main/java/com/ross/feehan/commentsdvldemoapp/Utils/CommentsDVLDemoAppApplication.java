@@ -21,7 +21,8 @@ public class CommentsDVLDemoAppApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        this.ctx = ctx;
+
+        this.ctx = this;
 
         objectGraph = ObjectGraph.create(getModules().toArray());
         objectGraph.inject(this);

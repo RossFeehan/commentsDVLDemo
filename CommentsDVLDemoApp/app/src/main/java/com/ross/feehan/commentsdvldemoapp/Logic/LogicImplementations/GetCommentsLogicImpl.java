@@ -45,7 +45,7 @@ public class GetCommentsLogicImpl implements GetCommentsLogicInterface{
     public void receiveComments(List<Comment> comments) {
 
         //if there are no comments call the noCommentsYet method on the view listener
-        if(comments == null){
+        if(comments.size() == 0){
             displayCommentsView.noCommentsYet();
         }
 

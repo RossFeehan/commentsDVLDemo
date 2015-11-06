@@ -1,12 +1,19 @@
 package com.ross.feehan.commentsdvldemoapp.Data.Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Ross Feehan on 04/11/2015.
  * Copyright Ross Feehan
  */
-public class Comment {
+public class Comment implements Serializable {
 
     String comment, commentDate;
+
+    //constructors
+    public Comment(){
+
+    }
 
     public Comment(String comment, String commentDate){
         setComment(comment);

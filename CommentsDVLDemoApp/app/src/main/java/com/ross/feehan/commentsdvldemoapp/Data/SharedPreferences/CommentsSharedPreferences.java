@@ -53,7 +53,7 @@ public class CommentsSharedPreferences {
      *@Return List<Comment> - The list of comments, null if there are none.
      */
     public List<Comment> getComments(){
-        ArrayList<Comment> comments = null;
+        ArrayList<Comment> comments = new ArrayList<Comment>();
 
         try{
             FileInputStream fileInput = ctx.openFileInput(COMMENTSFILE);
