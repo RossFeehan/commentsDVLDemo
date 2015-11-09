@@ -64,6 +64,6 @@ public class PostCommentLogicImpl implements PostCommentsLogicInterface {
             postCommentViewListener.commentUnsuccessfullyPosted();
         }
 
-        postCommentViewListener.hideDisplayProgress();
+        postCommentViewListener.hideLoadingProgress();
     }
 }

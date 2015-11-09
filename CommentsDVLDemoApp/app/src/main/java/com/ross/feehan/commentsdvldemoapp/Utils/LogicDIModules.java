@@ -1,9 +1,12 @@
 package com.ross.feehan.commentsdvldemoapp.Utils;
 
+import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.DeleteCommentImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.PostCommentImpl;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.DeleteCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.PostCommentLogicImpl;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.DeleteCommentLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.PostCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.View.ViewImplementations.DisplayCommentsActivity;
@@ -27,6 +30,7 @@ public class LogicDIModules {
 
     private GetCommentsLogicImpl getCommentsLogic;
     private PostCommentLogicImpl postCommentLogic;
+    private DeleteCommentsLogicImpl deleteCommentLogic;
 
     @Provides @Singleton
     public GetCommentsLogicInterface provideGetCommentsLogic(GetCommentsImpl getComments){
@@ -36,5 +40,10 @@ public class LogicDIModules {
     @Provides @Singleton
     public PostCommentsLogicInterface providePostCommentLogicImpl(PostCommentImpl postComment){
         return postCommentLogic = new PostCommentLogicImpl(postComment);
+    }
+
+    @Provides @Singleton
+    public DeleteCommentLogicInterface provideDeleteCommentLogicImpl(DeleteCommentImpl deleteComment){
+        return deleteCommentLogic = new DeleteCommentsLogicImpl(deleteComment);
     }
 }

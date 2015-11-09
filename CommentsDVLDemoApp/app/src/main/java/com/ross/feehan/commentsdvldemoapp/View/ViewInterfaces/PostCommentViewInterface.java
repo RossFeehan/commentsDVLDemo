@@ -4,11 +4,7 @@ package com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces;
  * Created by Ross Feehan on 05/11/2015.
  * Copyright Ross Feehan
  */
-public interface PostCommentViewInterface {
-
-    public void displayLoadingProgress();
-
-    public void hideDisplayProgress();
+public interface PostCommentViewInterface extends LoadingProgressInterface{
 
     public void commentPostedSuccessfully();
 

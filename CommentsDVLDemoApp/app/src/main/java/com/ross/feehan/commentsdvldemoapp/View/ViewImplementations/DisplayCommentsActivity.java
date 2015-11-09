@@ -14,11 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.DeleteCommentLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.R;
 import com.ross.feehan.commentsdvldemoapp.Utils.CommentsDVLDemoAppApplication;
 import com.ross.feehan.commentsdvldemoapp.View.Adapters.CommentsRecyclerViewAdapter;
 import com.ross.feehan.commentsdvldemoapp.View.Utils.RecyclerViewItemTouchCallback;
+import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.DeleteCommentViewInterface;
 import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.DisplayCommentsViewInterface;
 
 import java.util.List;
@@ -29,7 +31,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DisplayCommentsActivity extends AppCompatActivity implements DisplayCommentsViewInterface {
+public class DisplayCommentsActivity extends AppCompatActivity implements DisplayCommentsViewInterface, DeleteCommentViewInterface {
 
     private Context ctx;
     @Bind(R.id.progressBar) protected RelativeLayout progressBarLayout;
@@ -38,6 +40,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
     @Bind(R.id.postCommentFAB) protected FloatingActionButton postCommentFAB;
     //DI INJECT
     @Inject  GetCommentsLogicInterface getCommentsLogic;
+    @Inject DeleteCommentLogicInterface deleteComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
         commentsRV.setLayoutManager(recyclerViewLayoutManager);
 
         //Creating the adapter for the recycler view, with the comments
-        CommentsRecyclerViewAdapter commentsAdapter = new CommentsRecyclerViewAdapter(comments);
+        CommentsRecyclerViewAdapter commentsAdapter = new CommentsRecyclerViewAdapter(comments, this);
         commentsRV.setAdapter(commentsAdapter);
 
         ItemTouchHelper.Callback recyclerViewTouchCallback = new RecyclerViewItemTouchCallback(commentsAdapter);
@@ -100,6 +103,32 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
     @Override
     public void getCommentsFailed() {
         Toast.makeText(this, "Getting Comments Failed", Toast.LENGTH_LONG).show();
+    }
+
+    //DeleteCommentViewInterface INTERFACE METHODS
+    /*Method called from the comments Recycler view to notify the view that a comment was swiped
+     *away to be deleted
+     *This method will call the delete comment logic module class to handle deleting the comment
+     * @Params int commentPosition - The position of the comment to be deleted
+     */
+    @Override
+    public void deleteComment(int commentPosition) {
+        deleteComment.deleteComment(commentPosition, this);
+    }
+
+    /*Method called from the logic module class to notify view that the comment was deleted successfully
+     */
+    @Override
+    public void commentDeletedSuccessfully() {
+        //TODO UNDO HERE
+        Toast.makeText(ctx,"Comment deleted", Toast.LENGTH_LONG).show();
+    }
+
+    /*Method called from the logic module class to notify view that the comment was deleted unsuccessfully
+     */
+    @Override
+    public void commentDeletedUnsuccessfully() {
+        Toast.makeText(ctx, "Sorry something went wrong and the comment was not deleted", Toast.LENGTH_LONG).show();
     }
 
     //ACTIVITY LIFECYCLE METHODS

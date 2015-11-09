@@ -8,11 +8,7 @@ import java.util.List;
  * Created by Ross Feehan on 04/11/2015.
  * Copyright Ross Feehan
  */
-public interface DisplayCommentsViewInterface {
-
-    public void displayLoadingProgress();
-
-    public void hideLoadingProgress();
+public interface DisplayCommentsViewInterface extends LoadingProgressInterface{
 
     public void displayComments(List<Comment> comments);
 

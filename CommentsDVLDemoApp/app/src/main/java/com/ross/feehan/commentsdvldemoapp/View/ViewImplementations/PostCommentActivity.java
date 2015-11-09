@@ -70,7 +70,7 @@ public class PostCommentActivity extends AppCompatActivity implements PostCommen
     }
 
     @Override
-    public void hideDisplayProgress() {
+    public void hideLoadingProgress() {
         progressBarLayout.setVisibility(View.INVISIBLE);
         postCommentFAB.setVisibility(View.VISIBLE);
     }

@@ -2,10 +2,12 @@ package com.ross.feehan.commentsdvldemoapp.Utils;
 
 import android.content.Context;
 
+import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.DeleteCommentImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.GetCommentsImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.DataImplementations.PostCommentImpl;
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.Data.SharedPreferences.CommentsSharedPreferences;
+import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.DeleteCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.GetCommentsLogicImpl;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicImplementations.PostCommentLogicImpl;
 
@@ -20,7 +22,7 @@ import dagger.Provides;
  */
 
 @Module(injects =  {CommentsDVLDemoAppApplication.class, GetCommentsImpl.class, GetCommentsLogicImpl.class,
-        PostCommentLogicImpl.class, PostCommentImpl.class},
+        PostCommentLogicImpl.class, PostCommentImpl.class, DeleteCommentsLogicImpl.class},
         complete = false,
         library = true)
 public class DataDIModules {
@@ -29,6 +31,7 @@ public class DataDIModules {
     private GetCommentsImpl getCommentsImpl;
     private CommentsSharedPreferences commentsSP;
     private PostCommentImpl postComment;
+    private DeleteCommentImpl deleteComment;
     private Comment comment;
 
     //constructor
@@ -49,6 +52,11 @@ public class DataDIModules {
     @Provides @Singleton
     public PostCommentImpl providePostCommentImpl(CommentsSharedPreferences commentsSP){
         return postComment = new PostCommentImpl(commentsSP);
+    }
+
+    @Provides @Singleton
+    public DeleteCommentImpl provideDeleteCommentImpl(CommentsSharedPreferences commentsSP){
+        return deleteComment = new DeleteCommentImpl(commentsSP);
     }
 
     @Provides

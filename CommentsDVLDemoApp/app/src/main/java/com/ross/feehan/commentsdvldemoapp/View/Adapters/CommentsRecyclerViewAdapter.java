@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.R;
+import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.DeleteCommentViewInterface;
 import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.RecyclerViewItemTouchCallbackInterface;
 
 import java.util.List;
@@ -24,11 +25,13 @@ import butterknife.ButterKnife;
 public class CommentsRecyclerViewAdapter  extends RecyclerView.Adapter<CommentsRecyclerViewAdapter.CommentsViewHolder>
             implements RecyclerViewItemTouchCallbackInterface{
 
-    List<Comment> comments;
+    private List<Comment> comments;
+    private DeleteCommentViewInterface deleteCommentListener;
 
     //CONSTRUCTOR
-    public CommentsRecyclerViewAdapter(List<Comment> comments){
+    public CommentsRecyclerViewAdapter(List<Comment> comments, DeleteCommentViewInterface deleteCommentListener){
         this.comments = comments;
+        this.deleteCommentListener = deleteCommentListener;
     }
 
     @Override
@@ -58,6 +61,7 @@ public class CommentsRecyclerViewAdapter  extends RecyclerView.Adapter<CommentsR
     @Override
     public void onItemDismiss(int position) {
         comments.remove(position);
+        deleteCommentListener.deleteComment(position);
         notifyDataSetChanged();
     }
 

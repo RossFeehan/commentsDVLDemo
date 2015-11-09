@@ -35,18 +35,18 @@ public class CommentsSharedPreferences {
         List<Comment> comments = getComments();
         comments.add(comment);
 
-        try{
-            FileOutputStream fileOut = ctx.openFileOutput(COMMENTSFILE, Context.MODE_PRIVATE);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(comments);
-            objectOut.close();
-            fileOut.close();
-            saved = true;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        return saveFile(comments);
+    }
 
-        return saved;
+    /*Method to delete comment from file
+     *@Params int commentPosition - The position of the comment to delete
+     */
+    public boolean deleteComment(int commentPosition){
+        boolean deleted = false;
+        List<Comment> comments = getComments();
+        comments.remove(commentPosition);
+
+        return saveFile(comments);
     }
 
     /*Method to retrieve all comments from file
@@ -65,5 +65,23 @@ public class CommentsSharedPreferences {
             e.printStackTrace();
         }
         return comments;
+    }
+
+    /*Method that handles saving file to device
+     *@Params (List<Comment> comments - the list of comments to save
+     */
+    private boolean saveFile(List<Comment> comments){
+        boolean saved = false;
+        try{
+            FileOutputStream fileOut = ctx.openFileOutput(COMMENTSFILE, Context.MODE_PRIVATE);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(comments);
+            objectOut.close();
+            fileOut.close();
+            saved = true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return saved;
     }
 }
