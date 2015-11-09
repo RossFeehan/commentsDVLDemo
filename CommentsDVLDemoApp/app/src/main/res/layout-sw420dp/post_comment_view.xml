@@ -30,8 +30,7 @@
             android:maxLength="250"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/mainGrey"
-            android:hint="@string/commentHint"
-            android:inputType="textCapSentences"/>
+            android:hint="@string/commentHint"/>
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -39,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="225dp"
         android:layout_marginRight="18dp"
         android:clickable="true"
         app:elevation="4dp"

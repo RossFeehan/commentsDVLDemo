@@ -30,17 +30,11 @@ public class LogicDIModules {
 
     @Provides @Singleton
     public GetCommentsLogicInterface provideGetCommentsLogic(GetCommentsImpl getComments){
-        if(getCommentsLogic == null){
-            getCommentsLogic = new GetCommentsLogicImpl(getComments);
-        }
-        return getCommentsLogic;
+        return getCommentsLogic = new GetCommentsLogicImpl(getComments);
     }
 
     @Provides @Singleton
     public PostCommentsLogicInterface providePostCommentLogicImpl(PostCommentImpl postComment){
-        if(postCommentLogic == null){
-            postCommentLogic = new PostCommentLogicImpl(postComment);
-        }
-        return postCommentLogic;
+        return postCommentLogic = new PostCommentLogicImpl(postComment);
     }
 }

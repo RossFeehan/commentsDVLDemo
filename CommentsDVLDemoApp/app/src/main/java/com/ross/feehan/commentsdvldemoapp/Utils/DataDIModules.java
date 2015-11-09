@@ -38,31 +38,21 @@ public class DataDIModules {
 
     @Provides @Singleton
     public CommentsSharedPreferences provideCommentsSharedPreferences(){
-        if(commentsSP == null){
-            commentsSP = new CommentsSharedPreferences(ctx);
-        }
-        return commentsSP;
+        return commentsSP = new CommentsSharedPreferences(ctx);
     }
 
     @Provides @Singleton
     public GetCommentsImpl provideGetCommentsImpl(CommentsSharedPreferences commentsSP){
-        if(getCommentsImpl == null){
-            getCommentsImpl = new GetCommentsImpl(commentsSP);
-        }
-        return getCommentsImpl;
+        return getCommentsImpl = new GetCommentsImpl(commentsSP);
     }
 
     @Provides @Singleton
     public PostCommentImpl providePostCommentImpl(CommentsSharedPreferences commentsSP){
-        if(postComment == null){
-            postComment = new PostCommentImpl(commentsSP);
-        }
-        return postComment;
+        return postComment = new PostCommentImpl(commentsSP);
     }
 
     @Provides
     public Comment provideComment(){
-        comment = new Comment();
-        return comment;
+        return comment = new Comment();
     }
 }
