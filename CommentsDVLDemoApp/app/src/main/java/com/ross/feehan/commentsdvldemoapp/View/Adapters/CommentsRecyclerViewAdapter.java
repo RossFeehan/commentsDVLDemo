@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.R;
+import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.RecyclerViewItemTouchCallbackInterface;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ import butterknife.ButterKnife;
  * Created by Ross Feehan on 09/11/2015.
  * Copyright Ross Feehan
  */
-public class CommentsRecyclerViewAdapter  extends RecyclerView.Adapter<CommentsRecyclerViewAdapter.CommentsViewHolder>{
+public class CommentsRecyclerViewAdapter  extends RecyclerView.Adapter<CommentsRecyclerViewAdapter.CommentsViewHolder>
+            implements RecyclerViewItemTouchCallbackInterface{
 
     List<Comment> comments;
 
@@ -52,7 +54,16 @@ public class CommentsRecyclerViewAdapter  extends RecyclerView.Adapter<CommentsR
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    //RecyclerViewItemTouchCallbackInterface INTERFACE METHODS
+    @Override
+    public void onItemDismiss(int position) {
+        comments.remove(position);
+        notifyDataSetChanged();
+    }
 
+    /*Private class that holds the layout for the card view
+     *Uses the view holder pattern
+     */
     public static class CommentsViewHolder extends RecyclerView.ViewHolder{
 
         @Bind(R.id.commentCV) protected CardView commentCV;

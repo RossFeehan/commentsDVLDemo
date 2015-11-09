@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogic
 import com.ross.feehan.commentsdvldemoapp.R;
 import com.ross.feehan.commentsdvldemoapp.Utils.CommentsDVLDemoAppApplication;
 import com.ross.feehan.commentsdvldemoapp.View.Adapters.CommentsRecyclerViewAdapter;
+import com.ross.feehan.commentsdvldemoapp.View.Utils.RecyclerViewItemTouchCallback;
 import com.ross.feehan.commentsdvldemoapp.View.ViewInterfaces.DisplayCommentsViewInterface;
 
 import java.util.List;
@@ -71,14 +73,23 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
         postCommentFAB.setVisibility(View.VISIBLE);
     }
 
+    /*Method that handles displaying the list of comments
+     *@Params List<Comment> comments - The list of comments to display
+     */
     @Override
     public void displayComments(List<Comment> comments) {
 
+        //Creating the layout of the recycler view (linearlayout creates a list view like recycler view)
         LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManager(ctx);
         commentsRV.setLayoutManager(recyclerViewLayoutManager);
 
+        //Creating the adapter for the recycler view, with the comments
         CommentsRecyclerViewAdapter commentsAdapter = new CommentsRecyclerViewAdapter(comments);
         commentsRV.setAdapter(commentsAdapter);
+
+        ItemTouchHelper.Callback recyclerViewTouchCallback = new RecyclerViewItemTouchCallback(commentsAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(recyclerViewTouchCallback);
+        touchHelper.attachToRecyclerView(commentsRV);
     }
 
     @Override
