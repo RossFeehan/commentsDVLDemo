@@ -4,6 +4,7 @@
     <color name="mainColor">#006495</color>
     <color name="mainColorDark">#004C70</color>
     <color name="mainGrey">#e0e0e0</color>
+    <color name="window_background">#FFF5F5F5</color>
     <color name="actionButtonYellow">#F4D00C</color>
     <color name="actionButtonRipple">#bdbdbd</color>
 </resources>

@@ -12,9 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.ross.feehan.commentsdvldemoapp.Data.Objects.Comment;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.DeleteCommentLogicInterface;
 import com.ross.feehan.commentsdvldemoapp.Logic.LogicInterfaces.GetCommentsLogicInterface;
@@ -41,6 +43,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
     @Bind(R.id.commentsRV) protected RecyclerView commentsRV;
     @Bind(R.id.postCommentFAB) protected FloatingActionButton postCommentFAB;
     @Bind(R.id.snackbarView) protected CoordinatorLayout snackbarLayout;
+    @Bind(R.id.backdrop) protected ImageView backdropIV;
     //DI INJECT
     @Inject  GetCommentsLogicInterface getCommentsLogic;
     @Inject DeleteCommentLogicInterface deleteComment;;
@@ -56,6 +59,9 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.allComments));
+
+
+        Glide.with(this).load(R.drawable.material_background).centerCrop().into(backdropIV);
     }
 
     //CLASS METHODS
