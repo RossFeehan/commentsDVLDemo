@@ -3,7 +3,9 @@ package com.ross.feehan.commentsdvldemoapp.View.ViewImplementations;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,9 +40,10 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
     @Bind(R.id.toolbar) protected Toolbar toolbar;
     @Bind(R.id.commentsRV) protected RecyclerView commentsRV;
     @Bind(R.id.postCommentFAB) protected FloatingActionButton postCommentFAB;
+    @Bind(R.id.snackbarView) protected CoordinatorLayout snackbarLayout;
     //DI INJECT
     @Inject  GetCommentsLogicInterface getCommentsLogic;
-    @Inject DeleteCommentLogicInterface deleteComment;
+    @Inject DeleteCommentLogicInterface deleteComment;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,6 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
         setContentView(R.layout.get_comments_view);
 
         this.ctx = this;
-
         //FOR BUTTERKNIFE
         ButterKnife.bind(this);
 
@@ -112,16 +114,38 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
      * @Params int commentPosition - The position of the comment to be deleted
      */
     @Override
-    public void deleteComment(int commentPosition) {
-        deleteComment.deleteComment(commentPosition, this);
+    public void deleteComment(final int commentPosition) {
+
+        final DisplayCommentsActivity commentsActivity = this;
+        deleteComment.setCommentToBeDeleted();
+        //display a snackbar allowing the user to undo the swipe to dismiss
+        Snackbar snackbar = Snackbar
+                .make(snackbarLayout, "Comment Deleted", Snackbar.LENGTH_LONG)
+                .setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteComment.cancelCommentDeletion();
+                        Snackbar snackbar1 = Snackbar.make(snackbarLayout, "Comment will not be deleted", Snackbar.LENGTH_SHORT);
+                        snackbar1.show();
+                    }
+                });
+
+        snackbar.show();
+
+        snackbar.setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                super.onDismissed(snackbar, event);
+                deleteComment.deleteComment(commentPosition, commentsActivity);
+            }
+        });
     }
 
     /*Method called from the logic module class to notify view that the comment was deleted successfully
      */
     @Override
     public void commentDeletedSuccessfully() {
-        //TODO UNDO HERE
-        Toast.makeText(ctx,"Comment deleted", Toast.LENGTH_LONG).show();
+
     }
 
     /*Method called from the logic module class to notify view that the comment was deleted unsuccessfully

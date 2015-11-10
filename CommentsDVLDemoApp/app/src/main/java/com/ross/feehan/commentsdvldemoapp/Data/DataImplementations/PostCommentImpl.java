@@ -29,16 +29,8 @@ public class PostCommentImpl implements PostCommentInterface {
     @Override
     public void postComment(Comment comment, PostCommentsLogicInterface postCommentListener) {
 
-        final Comment commentToSave = comment;
-        final PostCommentsLogicInterface postListener = postCommentListener;
-        //Just a timed handler to make the process look longer than it is on the UI
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                boolean posted = commentSP.saveComment(commentToSave);
-                postListener.commentPosted(posted);
-            }
-        }, 2000);
+        boolean posted = commentSP.saveComment(comment);
+        postCommentListener.commentPosted(posted);
 
     }
 }

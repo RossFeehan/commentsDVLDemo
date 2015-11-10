@@ -12,6 +12,7 @@ public class DeleteCommentsLogicImpl implements DeleteCommentLogicInterface {
 
     private DeleteCommentInterface deleteComment;
     private DeleteCommentViewInterface deleteCommentViewListener;
+    private Boolean deleteCommentBool;
 
     //constructor
     public DeleteCommentsLogicImpl(DeleteCommentInterface deleteComment){
@@ -26,8 +27,23 @@ public class DeleteCommentsLogicImpl implements DeleteCommentLogicInterface {
      */
     @Override
     public void deleteComment(int commentPosition, DeleteCommentViewInterface deleteCommentViewListener) {
-        this.deleteCommentViewListener = deleteCommentViewListener;
-        deleteComment.deleteComment(commentPosition, this);
+        if(deleteCommentBool){
+            this.deleteCommentViewListener = deleteCommentViewListener;
+            deleteComment.deleteComment(commentPosition, this);
+            //set bool to false to fix bug of snackbar onDismiss being called multiple times.
+            //To stop multiple comments being deleted
+            deleteCommentBool = false;
+        }
+    }
+
+    @Override
+    public void setCommentToBeDeleted() {
+        deleteCommentBool = true;
+    }
+
+    @Override
+    public void cancelCommentDeletion() {
+        deleteCommentBool = false;
     }
 
     /*Method called by the data module class responsible for deleting the comment

@@ -10,5 +10,9 @@ public interface DeleteCommentLogicInterface {
 
     public void deleteComment(int commentPosition, DeleteCommentViewInterface deleteCommentViewListener);
 
+    public void setCommentToBeDeleted();
+
+    public void cancelCommentDeletion();
+
     public void commentDeleted(boolean deleted);
 }
