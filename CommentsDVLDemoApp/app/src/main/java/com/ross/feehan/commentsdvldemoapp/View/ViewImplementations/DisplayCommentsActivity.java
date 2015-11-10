@@ -123,6 +123,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
     public void deleteComment(final int commentPosition) {
 
         final DisplayCommentsActivity commentsActivity = this;
+        //notify the delete comment logic class to mark the selected comment for deletion
         deleteComment.setCommentToBeDeleted();
         //display a snackbar allowing the user to undo the swipe to dismiss
         Snackbar snackbar = Snackbar
@@ -130,6 +131,7 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
                 .setAction("UNDO", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //if the user wants to undo the delete, the delete comment logic class will be notified
                         deleteComment.cancelCommentDeletion();
                         Snackbar snackbar1 = Snackbar.make(snackbarLayout, "Comment will not be deleted", Snackbar.LENGTH_SHORT);
                         snackbar1.show();
@@ -138,6 +140,8 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
 
         snackbar.show();
 
+        //once the snackbar has been dismissed, that is when the delete comment logic class is called to
+        //delete or not delete the comment, based on if the user acted upon the snackbar action
         snackbar.setCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {

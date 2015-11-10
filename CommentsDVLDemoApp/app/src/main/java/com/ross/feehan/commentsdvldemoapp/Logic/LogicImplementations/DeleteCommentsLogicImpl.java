@@ -36,11 +36,17 @@ public class DeleteCommentsLogicImpl implements DeleteCommentLogicInterface {
         }
     }
 
+    /*Method that sets the boolean of delete comment to true, this means the user has selected a comment to be deleted
+     *but still has a choice to not delete the comment through the use of a snackbar that is on display to them in the activity
+     */
     @Override
     public void setCommentToBeDeleted() {
         deleteCommentBool = true;
     }
 
+    /*Method that sets delete comment bool to false because the user has decided not to delete the comment
+     *through the use of the snackbar
+     */
     @Override
     public void cancelCommentDeletion() {
         deleteCommentBool = false;
