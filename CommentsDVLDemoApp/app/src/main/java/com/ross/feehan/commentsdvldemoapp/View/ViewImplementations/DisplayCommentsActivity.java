@@ -98,6 +98,8 @@ public class DisplayCommentsActivity extends AppCompatActivity implements Displa
         CommentsRecyclerViewAdapter commentsAdapter = new CommentsRecyclerViewAdapter(comments, this);
         commentsRV.setAdapter(commentsAdapter);
 
+        //Setting up the on touch event callback, witht he argument of commentsAdapter becuase that
+        //is where the callback will be handled
         ItemTouchHelper.Callback recyclerViewTouchCallback = new RecyclerViewItemTouchCallback(commentsAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(recyclerViewTouchCallback);
         touchHelper.attachToRecyclerView(commentsRV);
