@@ -3,13 +3,13 @@
     package="com.ross.feehan.commentsdvldemoapp" >
 
     <application
-        android:name=".Utils.CommentsDVLDemoAppApplication"
+        android:name=".Shared.CommentsDVLDemoAppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CommentsAppTheme" >
         <activity
-            android:name=".View.ViewImplementations.DisplayCommentsActivity"
+            android:name=".Features.DisplayComments.DisplayCommentsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".View.ViewImplementations.PostCommentActivity"
+        <activity android:name=".Features.PostComments.PostCommentActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">
         </activity>
